@@ -1,65 +1,419 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useState, useEffect } from 'react';
+import { ChevronDown, Mail, Github, Linkedin, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import MouseEffect from './components/MouseEffect';
+
+function VideoSlider() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const videos = [
+    {
+      id: 1,
+      title: '브랜드 프로모션 영상',
+      description: '기업의 새로운 제품 런칭을 위한 프로모션 영상입니다. 모션그래픽과 실사 촬영을 결합하여 역동적인 분위기를 연출했습니다.',
+      thumbnail: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1200&h=800&fit=crop',
+      tags: ['Motion Graphics', 'Premiere Pro', 'After Effects'],
+      year: '2024'
+    },
+    {
+      id: 2,
+      title: '제품 소개 영상',
+      description: '신제품의 특징과 장점을 효과적으로 전달하는 소개 영상입니다. 클린하고 모던한 편집 스타일로 제작했습니다.',
+      thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=800&fit=crop',
+      tags: ['Product Video', 'Color Grading', 'Sound Design'],
+      year: '2024'
+    },
+    {
+      id: 3,
+      title: '기업 홍보 영상',
+      description: '회사의 비전과 가치를 담은 홍보 영상입니다. 감성적인 스토리텔링과 고퀄리티 영상미를 추구했습니다.',
+      thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&h=800&fit=crop',
+      tags: ['Corporate', 'Storytelling', 'Cinematography'],
+      year: '2023'
+    },
+    {
+      id: 4,
+      title: 'SNS 숏폼 콘텐츠',
+      description: '소셜 미디어를 위한 15초 숏폼 영상 시리즈입니다. 빠른 템포와 임팩트 있는 편집이 특징입니다.',
+      thumbnail: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
+      tags: ['Short Form', 'Social Media', 'Viral Content'],
+      year: '2023'
+    }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % videos.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + videos.length) % videos.length);
+  };
+
+  const currentVideo = videos[currentSlide];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* 왼쪽: 비디오 썸네일 + 슬라이드 버튼 */}
+      <div className="relative">
+        <div className="relative aspect-video bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-lg group">
+          <img 
+            src={currentVideo.thumbnail}
+            alt={currentVideo.title}
+            className="w-full h-full object-cover transition-transform duration-500"
+          />
+          
+          {/* 재생 버튼 오버레이 */}
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors">
+            <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-0 h-0 border-l-[24px] border-l-black border-t-[16px] border-t-transparent border-b-[16px] border-b-transparent ml-2"></div>
+            </div>
+          </div>
+
+          {/* 좌우 화살표 버튼 */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <ChevronLeft size={24} className="text-black" />
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+          >
+            <ChevronRight size={24} className="text-black" />
+          </button>
+        </div>
+
+        {/* 슬라이드 인디케이터 */}
+        <div className="flex justify-center gap-2 mt-6">
+          {videos.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-2 rounded-full transition-all ${
+                index === currentSlide 
+                  ? 'w-8 bg-black' 
+                  : 'w-2 bg-gray-300 hover:bg-gray-400'
+              }`}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
+      </div>
+
+      {/* 오른쪽: 텍스트 + 버튼 */}
+      <div className="space-y-6">
+        <div className="text-sm text-gray-500 font-medium">
+          {currentVideo.year} · Video {currentSlide + 1}/{videos.length}
+        </div>
+        
+        <h3 className="text-3xl md:text-4xl font-bold">
+          {currentVideo.title}
+        </h3>
+        
+        <p className="text-lg text-gray-600 leading-relaxed">
+          {currentVideo.description}
+        </p>
+        
+        <div className="flex flex-wrap gap-3 mb-6">
+          {currentVideo.tags.map((tag, i) => (
+            <span 
+              key={i}
+              className="px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <Link href="/video">
+          <button className="px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-105 font-semibold inline-flex items-center gap-2">
+            영상 자세히 보기
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default function Portfolio() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className="bg-white text-black overflow-x-hidden">
+      <MouseEffect />
+{/* Top Navigation */}
+<nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16">
+      {/* 로고 */}
+      <Link href="/">
+        <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent cursor-pointer">
+          Daheen Lee
+        </h1>
+      </Link>
+
+      {/* 메뉴 */}
+      <div className="hidden md:flex items-center gap-8">
+        <Link href="/">
+          <button className="text-gray-300 hover:text-white font-medium transition-colors">
+            홈
+          </button>
+        </Link>
+        <Link href="/about">
+          <button className="text-gray-300 hover:text-white font-medium transition-colors">
+            자기소개
+          </button>
+        </Link>
+        <Link href="/webdesign">
+          <button className="text-gray-300 hover:text-white font-medium transition-colors">
+            웹디자인
+          </button>
+        </Link>
+        <Link href="/video">
+          <button className="text-gray-300 hover:text-white font-medium transition-colors">
+            영상편집
+          </button>
+        </Link>
+      </div>
+
+      {/* 모바일 메뉴 버튼 */}
+      <button className="md:hidden text-white">
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+      {/* Hero Section */}
+      <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        {/* 3D 배경 구체 */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <div 
+            className="absolute w-96 h-96 rounded-full blur-3xl opacity-40 animate-float"
+            style={{
+              background: 'radial-gradient(circle, rgba(59,130,246,0.8) 0%, rgba(59,130,246,0.3) 50%, transparent 70%)',
+              top: '10%',
+              left: '10%',
+              animationDelay: '0s'
+            }}
+          />
+          <div 
+            className="absolute w-80 h-80 rounded-full blur-3xl opacity-35 animate-float"
+            style={{
+              background: 'radial-gradient(circle, rgba(34,197,94,0.8) 0%, rgba(34,197,94,0.3) 50%, transparent 70%)',
+              top: '60%',
+              right: '15%',
+              animationDelay: '2s'
+            }}
+          />
+          <div 
+            className="absolute w-72 h-72 rounded-full blur-3xl opacity-30 animate-float"
+            style={{
+              background: 'radial-gradient(circle, rgba(14,165,233,0.8) 0%, rgba(14,165,233,0.3) 50%, transparent 70%)',
+              bottom: '15%',
+              left: '20%',
+              animationDelay: '4s'
+            }}
+          />
+          <div 
+            className="absolute w-64 h-64 rounded-full blur-3xl opacity-35 animate-float"
+            style={{
+              background: 'radial-gradient(circle, rgba(16,185,129,0.8) 0%, rgba(16,185,129,0.3) 50%, transparent 70%)',
+              top: '40%',
+              right: '40%',
+              animationDelay: '1s'
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 text-center px-4">
+          <h1 className="text-7xl md:text-9xl font-bold mb-8 tracking-tight">
+            WEB DESIGNER
+            <br />
+            <span className="bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 bg-clip-text text-transparent">
+              Daheen Lee
+            </span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-gray-600 mb-12">
+            안녕하세요, 반갑습니다!
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/webdesign">
+              <button className="px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-110 font-semibold">
+                프로젝트 보기
+              </button>
+            </Link>
+            <Link href="/profile">
+              <button className="px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-110 font-semibold">
+                자기소개
+              </button>
+            </Link>
+            <button 
+              onClick={() => scrollToSection('contact')}
+              className="px-8 py-4 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-all hover:scale-110 font-semibold"
+            >
+              연락하기
+            </button>
+          </div>
+        </div>
+
+        {/* 스크롤 다운 인디케이터 */}
+        <button 
+          onClick={() => scrollToSection('web')}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce text-black"
+        >
+          <ChevronDown size={40} />
+        </button>
+      </section>
+
+     {/* Web Design Section */}
+<section id="web" className="min-h-screen py-32 px-4 md:px-16 relative flex items-center">
+  <div 
+    className="absolute top-0 right-0 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-20"
+    style={{ transform: `translateY(${scrollY * 0.1}px)` }}
+  ></div>
+
+  <div className="max-w-7xl mx-auto w-full">
+    <h2 className="text-5xl md:text-7xl font-bold mb-20">
+      <span className="text-green-700">01.</span> Web Design
+    </h2>
+
+    {/* 이미지 : 텍스트 반반 레이아웃 */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* 왼쪽: 이미지 */}
+      <div className="relative aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
+        <img 
+          src="https://static.wixstatic.com/media/5dcbb6_59d55c825f284fceb5e351c87884bf1c~mv2.png/v1/fill/w_953,h_743,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dcbb6_59d55c825f284fceb5e351c87884bf1c~mv2.png"
+          alt="제품 상세이미지/프로모션 이미지"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* 오른쪽: 텍스트 + 버튼 */}
+      <div className="space-y-6">
+        <h3 className="text-3xl md:text-4xl font-bold">
+          Professional Works
+        </h3>
+        <p className="text-lg text-gray-600 leading-relaxed">
+          기업 재직 중 수행한 실무 프로젝트 모음.
+        </p>
+        
+        <div className="flex flex-wrap gap-3 mb-6">
+          <span className="px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-sm">
+            Photoshop
+          </span>
+          <span className="px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-sm">
+            Illustrator
+          </span>
+          
+        </div>
+
+        <Link href="/webdesign">
+          <button className="px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-105 font-semibold inline-flex items-center gap-2">
+            자세히 보기
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* Video Section */}
+<section id="video" className="min-h-screen py-32 px-4 md:px-16 relative flex items-center">
+  <div 
+    className="absolute top-1/2 right-0 w-96 h-96 bg-green-400 rounded-full blur-3xl opacity-20"
+    style={{ transform: `translateY(${scrollY * 0.08}px)` }}
+  ></div>
+
+  <div className="max-w-7xl mx-auto w-full">
+    <h2 className="text-5xl md:text-7xl font-bold mb-20">
+      <span className="text-green-700">02.</span> Video Editing
+    </h2>
+
+    {/* 슬라이드: 동영상 : 텍스트 레이아웃 */}
+    <VideoSlider />
+  </div>
+</section>
+
+      {/* Contact Section */}
+      <section id="contact" className="min-h-screen flex items-center justify-center px-4 relative bg-gradient-to-b from-white to-gray-50">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-400 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+
+        <div className="text-center relative z-10">
+          <h2 className="text-6xl md:text-8xl font-bold mb-8">
+            Let's Work
+            <br />
+            <span className="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">
+              Together
+            </span>
+          </h2>
+          
+          <p className="text-xl md:text-2xl text-gray-600 mb-12">
+            프로젝트 의뢰나 협업 제안을 기다립니다
+          </p>
+
+          <div className="flex gap-6 justify-center mb-12">
+            <button className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
+              <Mail size={32} className="text-black" />
+            </button>
+            <button className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
+              <Github size={32} className="text-black" />
+            </button>
+            <button className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
+              <Linkedin size={32} className="text-black" />
+            </button>
+          </div>
+
+          <button className="px-12 py-5 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-110 font-bold text-lg flex items-center gap-2 mx-auto">
+            이메일 보내기
+            <ArrowRight size={24} />
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 text-center text-gray-500 border-t border-gray-200 bg-white">
+        <p>© 2026 Daheen Lee. All rights reserved.</p>
+      </footer>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          25% { transform: translate(30px, -30px) scale(1.1); }
+          50% { transform: translate(-20px, 20px) scale(0.9); }
+          75% { transform: translate(40px, 10px) scale(1.05); }
+        }
+        .animate-float {
+          animation: float 20s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
