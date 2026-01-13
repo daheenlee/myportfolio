@@ -1,296 +1,200 @@
 'use client';
 
-import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
-import MouseEffect from '../components/MouseEffect';
+import { ExternalLink, X, ArrowLeft, ChevronDown } from 'lucide-react';
+// 데이터 경로 확인 필수!
+import { companyAProjects, companyBProjects, Project } from '../data/projectsData';
 
 export default function WebDesign() {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeTab, setActiveTab] = useState<'thumbnail' | 'detail'>('thumbnail');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  // A회사 프로젝트 (3개)
-  const companyAProjects = [
-    {
-      id: 1,
-      title: 'A회사 프로젝트 1',
-      description: '프로젝트 설명을 여기에',
-      year: '2024',
-      company: 'A Company',
-      role: 'UI/UX Design, Web Design',
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
-      tags: ['Responsive', 'Landing Page']
-    },
-    {
-      id: 2,
-      title: 'A회사 프로젝트 2',
-      description: '프로젝트 설명을 여기에',
-      year: '2024',
-      company: 'A Company',
-      role: 'Web Design',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-      tags: ['Corporate', 'Modern']
-    },
-    {
-      id: 3,
-      title: 'A회사 프로젝트 3',
-      description: '프로젝트 설명을 여기에',
-      year: '2024',
-      company: 'A Company',
-      role: 'Brand Design',
-      image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&h=600&fit=crop',
-      tags: ['Branding', 'Web']
-    }
-  ];
+  // 마우스 효과 로직
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
-  // B회사 프로젝트 (15개)
-  const companyBProjects = Array.from({ length: 15 }, (_, i) => ({
-    id: i + 10,
-    title: `B회사 프로젝트 ${i + 1}`,
-    description: '프로젝트 설명을 여기에 적어주세요',
-    year: '2023-2024',
-    company: 'B Company',
-    role: 'UI/UX Design',
-    image: `https://images.unsplash.com/photo-${1467232004584 + i * 1000}?w=800&h=600&fit=crop`,
-    tags: ['Design', 'Web']
-  }));
+  // 탭에 따른 이미지 가져오기 함수
+  const getTabImages = () => {
+    if (!selectedProject) return [];
+    return activeTab === 'thumbnail' 
+      ? selectedProject.thumbnailImages 
+      : selectedProject.detailImages;
+  };
+
+  // 프로젝트 카드 컴포넌트
+  const ProjectCard = ({ project }: { project: Project }) => (
+    <div 
+      className="group cursor-pointer"
+      onClick={() => {
+        setSelectedProject(project);
+        setActiveTab('thumbnail');
+      }}
+    >
+      <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gray-100 border border-gray-200 shadow-sm">
+        <img 
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-xl">
+            <ExternalLink size={20} className="text-black" />
+          </div>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <div className="flex items-center gap-2 text-xs text-gray-400 font-bold uppercase tracking-wider">
+          <span>{project.year}</span>
+          <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+          <span>{project.role}</span>
+        </div>
+        <h4 className="text-xl font-bold group-hover:text-blue-600 transition-colors tracking-tight">
+          {project.title}
+        </h4>
+        <div className="flex flex-wrap gap-2 pt-1">
+          {project.tags.map((tag: string, i: number) => (
+            <span key={i} className="px-3 py-1 bg-gray-50 border border-gray-100 rounded-full text-[10px] font-bold text-gray-500 uppercase">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-white text-black">
-      <MouseEffect />
+    <div className="min-h-screen bg-white text-black relative overflow-x-hidden">
+      {/* Mouse Effect - 메인과 동일한 스타일 */}
+      <div 
+        className="fixed w-8 h-8 rounded-full bg-blue-500 opacity-20 pointer-events-none z-[100] mix-blend-multiply blur-md transition-transform duration-100 hidden md:block"
+        style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px`, transform: 'translate(-50%, -50%)' }}
+      />
       
-      {/* Top Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-500 to-green-600 bg-clip-text text-transparent cursor-pointer">
-                Daheen Lee
-              </h1>
-            </Link>
-
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/">
-                <button className="text-gray-700 hover:text-black font-medium transition-colors">
-                  홈
-                </button>
+      {/* Navigation - 메인 페이지 블랙 헤더와 100% 일치시킴 */}
+      <nav className="fixed top-0 left-0 right-0 z-[60] bg-black/95 backdrop-blur-md border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
+          <Link href="/">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity">
+              Daheen Lee
+            </h1>
+          </Link>
+          <div className="hidden md:flex items-center gap-10">
+            {[
+              { name: '홈', href: '/' },
+              { name: '자기소개', href: '/profile' },
+              { name: '웹디자인', href: '/webdesign' },
+              { name: '영상편집', href: '/video' }
+            ].map((item) => (
+              <Link key={item.name} href={item.href}>
+                <span className={`text-xs font-bold transition-colors cursor-pointer uppercase tracking-widest ${item.href === '/webdesign' ? 'text-white' : 'text-gray-400 hover:text-white'}`}>
+                  {item.name}
+                </span>
               </Link>
-              <Link href="/about">
-                <button className="text-gray-700 hover:text-black font-medium transition-colors">
-                  자기소개
-                </button>
-              </Link>
-              <Link href="/webdesign">
-                <button className="text-black font-semibold">
-                  웹디자인
-                </button>
-              </Link>
-              <Link href="/video">
-                <button className="text-gray-700 hover:text-black font-medium transition-colors">
-                  영상편집
-                </button>
-              </Link>
-            </div>
-
-            <button className="md:hidden text-black">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+            ))}
           </div>
+          <button className="md:hidden text-white"><ChevronDown size={20} /></button>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative">
-        <div className="absolute top-20 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-20"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-6">
-            Web Design
-            <br />
-            <span className="bg-gradient-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
-              Portfolio
-            </span>
+      {/* Hero Section - 메인 페이지의 타이틀 느낌 반영 */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-52 pb-20">
+        <header className="max-w-4xl">
+          <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 italic uppercase leading-none">
+            WEB <br />
+            <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">DESIGN</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mb-4">
-            기업 재직 중 수행한 상품 상세페이지 / 프로모션 페이지 입니다.
-        
+          <p className="text-gray-500 text-xl font-medium max-w-2xl leading-relaxed">
+            기업 재직 중 수행한 상품 상세페이지, 프로모션 디자인 및 브랜드 경험 프로젝트 결과물입니다.
           </p>
-        </div>
-      </section>
+        </header>
+      </div>
 
-      {/* A회사 섹션 (3개) */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold">
-              <span className="text-green-700">핸드폰용품 회사 </span> 제품 상세페이지
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        {/* 섹션 1: 핸드폰 용품 */}
+        <section className="mb-40">
+          <div className="flex items-baseline gap-4 mb-12 border-b border-gray-100 pb-6">
+            <span className="text-4xl font-black text-gray-100 italic">01</span>
+            <h3 className="text-2xl font-bold tracking-tight">
+              핸드폰용품 제작회사 <span className="text-gray-400 font-light ml-2">| 제품 상세페이지</span>
             </h3>
-            <span className="text-gray-500">3 Projects / 2021년도 작업</span>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {companyAProjects.map((project) => (
-              <div 
-                key={project.id}
-                className="group cursor-pointer"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-100 border border-gray-200">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-4 right-4">
-                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                        <ExternalLink size={18} className="text-black" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs text-gray-500">{project.year}</span>
-                    <span className="text-xs text-gray-500">•</span>
-                    <span className="text-xs text-gray-500">{project.role}</span>
-                  </div>
-                  <h4 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {project.tags.map((tag, i) => (
-                      <span 
-                        key={i}
-                        className="px-2 py-1 bg-gray-100 border border-gray-200 rounded-full text-xs text-gray-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+            {companyAProjects.map((p: Project) => <ProjectCard key={p.id} project={p} />)}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* B회사 섹션 (15개) */}
-      <section className="px-4 sm:px-6 lg:px-8 pb-32 bg-gradient-to-b from-white to-gray-50">
-        <div className="max-w-7xl mx-auto pt-20">
-          <div className="flex items-center justify-between mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold">
-              <span className="text-blue-600">B Company</span> Projects
+        {/* 섹션 2: B Company */}
+        <section className="mb-40">
+          <div className="flex items-baseline gap-4 mb-12 border-b border-gray-100 pb-6">
+            <span className="text-4xl font-black text-gray-100 italic">02</span>
+            <h3 className="text-2xl font-bold tracking-tight">
+              B Company <span className="text-gray-400 font-light ml-2">| 프로모션 & 디자인</span>
             </h3>
-            <span className="text-gray-500">15 Projects</span>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {companyBProjects.map((project) => (
-              <div 
-                key={project.id}
-                className="group cursor-pointer"
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-gray-100 border border-gray-200">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute bottom-4 right-4">
-                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                        <ExternalLink size={18} className="text-black" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs text-gray-500">{project.year}</span>
-                    <span className="text-xs text-gray-500">•</span>
-                    <span className="text-xs text-gray-500">{project.role}</span>
-                  </div>
-                  <h4 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {project.tags.map((tag, i) => (
-                      <span 
-                        key={i}
-                        className="px-2 py-1 bg-gray-100 border border-gray-200 rounded-full text-xs text-gray-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+            {companyBProjects.map((p: Project) => <ProjectCard key={p.id} project={p} />)}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
-      {/* Project Detail Modal */}
+      {/* 모달 창 - 디자인 고급화 */}
       {selectedProject && (
-        <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedProject(null)}
-        >
-          <div 
-            className="max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img 
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              className="w-full aspect-video object-cover"
-            />
-            <div className="p-8">
-              <div className="text-sm text-blue-600 font-semibold mb-2">{selectedProject.company}</div>
-              <h3 className="text-3xl font-bold mb-4">{selectedProject.title}</h3>
-              <div className="flex items-center gap-4 mb-6 text-gray-600">
-                <span>{selectedProject.year}</span>
-                <span>•</span>
-                <span>{selectedProject.role}</span>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] flex items-center justify-center p-4 md:p-8" onClick={() => setSelectedProject(null)}>
+          <div className="max-w-6xl w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl h-full max-h-[92vh] flex flex-col relative animate-in fade-in zoom-in duration-300" onClick={e => e.stopPropagation()}>
+            
+            <button onClick={() => setSelectedProject(null)} className="absolute top-6 right-6 z-20 w-12 h-12 bg-black text-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-2xl">
+              <X size={24} />
+            </button>
+
+            {/* 모달 헤더 & 탭 */}
+            <div className="p-10 border-b border-gray-100 bg-white">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="px-3 py-1 bg-blue-50 text-blue-600 font-bold text-[10px] uppercase tracking-widest rounded-md">{selectedProject.company}</span>
               </div>
-              <p className="text-gray-700 text-lg mb-6">
-                {selectedProject.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {selectedProject.tags.map((tag: string, i: number) => (
-                  <span 
-                    key={i}
-                    className="px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-sm"
+              <h3 className="text-4xl font-black mt-2 mb-8 tracking-tight italic uppercase">{selectedProject.title}</h3>
+              
+              <div className="flex gap-4">
+                {(['thumbnail', 'detail'] as const).map((tab) => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest transition-all ${
+                      activeTab === tab 
+                      ? 'bg-black text-white shadow-2xl scale-105' 
+                      : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
+                    }`}
                   >
-                    {tag}
-                  </span>
+                    {tab === 'thumbnail' ? '썸네일' : '상세페이지'}
+                  </button>
                 ))}
               </div>
-              <button 
-                onClick={() => setSelectedProject(null)}
-                className="px-8 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-all font-semibold"
-              >
-                닫기
-              </button>
+            </div>
+
+            {/* 이미지 영역 */}
+            <div className="flex-1 overflow-y-auto p-10 bg-gray-50/50">
+              <div className="max-w-4xl mx-auto space-y-8">
+                {getTabImages().map((img: string, idx: number) => (
+                  <img key={idx} src={img} alt="content" className="w-full h-auto rounded-2xl shadow-lg border border-gray-200" />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Footer */}
-      <footer className="py-12 text-center text-gray-500 border-t border-gray-200 bg-white">
-        <p>© 2026 Daheen Lee. All rights reserved.</p>
+      {/* Footer - 메인과 동일 */}
+      <footer className="py-20 text-center border-t border-gray-100 bg-white">
+        <p className="text-gray-400 text-[10px] font-black tracking-[0.3em] uppercase">
+          © 2026 DAHEEN LEE. ALL RIGHTS RESERVED.
+        </p>
       </footer>
     </div>
   );
