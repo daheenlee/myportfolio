@@ -20,13 +20,12 @@ export default function VideoPortfolio() {
 const videoProjects = [
   {
     id: 1,
-    title: '브랜드 프로모션 영상',
+    title: '아티스트 인터뷰 영상(1)',
     category: 'Motion Graphics',
-    // 유튜브 공유 버튼 눌렀을 때 나오는 주소: https://youtu.be/dQw4w9WgXcQ
-    // 여기서 dQw4w9WgXcQ 이 부분만 따서 아래처럼 넣어주세요.
-    videoUrl: 'https://www.youtube.com/watch?v=LMDnt3sv0kw', 
-    thumbnail: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=1200&h=800&fit=crop',
-      videourl: 'https://www.youtube.com/watch?v=LMDnt3sv0kw', // 실제 영상 임베드 주소
+  
+    videoUrl:  'https://www.youtube.com/embed/LMDnt3sv0kw ',
+    thumbnail: '/images/videosum.png',
+      videourl: 'https://www.youtube.com/embed/LMDnt3sv0kw ', // 실제 영상 임베드 주소
       tags: ['After Effects', 'Premiere Pro', 'Cinema 4D'],
       year: '2024'
     },
@@ -40,7 +39,7 @@ const videoProjects = [
       tags: ['Color Grading', 'Sound Design'],
       year: '2024'
     },
-    {
+ {
       id: 3,
       title: 'SNS 숏폼 콘텐츠',
       category: 'Viral Video',
@@ -48,7 +47,33 @@ const videoProjects = [
       thumbnail: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
       videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       tags: ['TikTok', 'Instagram Reels', 'Fast Cut'],
-      year: '2023'
+      year: '2023',
+      shorts: [
+        {
+          id: 31,
+          title: '숏폼 #1',
+          thumbnail: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=600&h=800&fit=crop',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+        },
+        {
+          id: 32,
+          title: '숏폼 #2',
+          thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=800&fit=crop',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+        },
+        {
+          id: 33,
+          title: '숏폼 #3',
+          thumbnail: 'https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=600&h=800&fit=crop',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+        },
+        {
+          id: 34,
+          title: '숏폼 #4',
+          thumbnail: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&h=800&fit=crop',
+          videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
+        }
+      ]
     }
   ];
 
@@ -60,41 +85,51 @@ const videoProjects = [
         style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px`, transform: 'translate(-50%, -50%)' }}
       />
       
-      {/* Navigation - 블랙 테마 통일 */}
-      <nav className="fixed top-0 left-0 right-0 z-[60] bg-black/95 backdrop-blur-md border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
-          <Link href="/">
-            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent cursor-pointer hover:opacity-80 transition-opacity">
-              Daheen Lee
-            </h1>
-          </Link>
-          <div className="hidden md:flex items-center gap-10">
-            {[
-              { name: '홈', href: '/' },
-              { name: '자기소개', href: '/profile' },
-              { name: '웹디자인', href: '/webdesign' },
-              { name: '영상편집', href: '/video' }
-            ].map((item) => (
-              <Link key={item.name} href={item.href}>
-                <span className={`text-xs font-bold transition-colors cursor-pointer uppercase tracking-widest ${item.href === '/video' ? 'text-white' : 'text-gray-400 hover:text-white'}`}>
-                  {item.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-          <button className="md:hidden text-white"><ChevronDown size={20} /></button>
-        </div>
-      </nav>
-
+      {/* Navigation (하나로 통일 및 디자인 개선) */}
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-20">
+                  <Link href="/" className="flex items-center gap-2 group">
+                    <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                    <h1 className="text-xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                      DAHEEN
+                    </h1>
+                  </Link>
+      
+                  <div className="hidden md:flex items-center gap-10">
+                    {[
+                      { name: '홈', href: '/' },
+                      { name: '자기소개', href: '/profile' },
+                      { name: '웹디자인', href: '/webdesign' },
+                      { name: '영상편집', href: '/video' }
+                    ].map((item) => (
+                      <Link key={item.name} href={item.href}>
+                        <span className="text-sm font-bold text-gray-500 hover:text-black transition-colors relative group cursor-pointer">
+                          {item.name}
+                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+      
+                  <button className="hidden md:block px-6 py-2.5 bg-black text-white text-sm font-bold rounded-full hover:bg-gray-800 transition-all hover:scale-105">
+                    Contact Me
+                  </button>
+                </div>
+              </div>
+            </nav>
+      
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-52 pb-20">
-        <header className="max-w-4xl">
-          <h2 className="text-6xl md:text-8xl font-black tracking-tighter mb-6 italic uppercase leading-none">
-            VIDEO <br />
-            <span className="bg-gradient-to-r from-green-500 to-blue-600 bg-clip-text text-transparent">EDITING</span>
-          </h2>
+       <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-52 pb-20">
+       <header className="max-w-7xl mx-auto px-6 pt-10 pb-20 flex flex-col items-start">
+         <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6  uppercase leading-none text-left">
+    VIDEO<br/>
+    <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent text-left">
+      Editing
+    </span>
+  </h2>
           <p className="text-gray-500 text-xl font-medium max-w-2xl leading-relaxed">
-            모션 그래픽, 색보정, 숏폼 콘텐츠 등 감각적인 편집으로 브랜드의 메시지를 시각화합니다.
+            영상편집 작업물입니다.
           </p>
         </header>
       </div>

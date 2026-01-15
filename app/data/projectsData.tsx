@@ -4,7 +4,7 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  year: string;
+  year: number;
   company: string;
   role: string;
   image: string; // 카드에 보이는 대표 이미지
@@ -17,53 +17,241 @@ export const companyAProjects: Project[] = [
   {
     id: 1,
     title: '강화유리 상세페이지',
-    description: '핸드폰 강화유리 제품의 특장점을 강조한 상세페이지 및 썸네일 제작.',
-    year: '2021',
+    description: '핸드폰 강화유리 상세페이지 및 썸네일 제작.',
+    year: 2021,
     company: '핸드폰용품 제작회사',
     role: 'Web Design',
-    image: 'https://static.wixstatic.com/media/5dcbb6_be3cd8817d39405387e66012fb561f96~mv2.png/v1/fill/w_350,h_349,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC%EC%8D%B8%EB%84%A4%EC%9D%BC(10%EB%A7%A4)%20copy10_PNG.png',
+    image: '/images/21_02x5_sum.png',
     tags: ['Product Page', 'Mobile Accessory'],
     thumbnailImages: [
-      'https://static.wixstatic.com/media/5dcbb6_8a73378483bf4feea60b31b10d0c3764~mv2.png/v1/fill/w_352,h_349,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC%EC%8D%B8%EB%84%A4%EC%9D%BC(5%EB%A7%A4).png',
-      'https://static.wixstatic.com/media/5dcbb6_be3cd8817d39405387e66012fb561f96~mv2.png/v1/fill/w_350,h_349,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC%EC%8D%B8%EB%84%A4%EC%9D%BC(10%EB%A7%A4)%20copy10_PNG.png'
+      '/images/21_02x5_sum.png', '/images/21_02x10_sum.png',
     ],
-    detailImages: [
-      'https://static.wixstatic.com/media/5dcbb6_82d6706abe8b4409add0232416e15429~mv2.jpg/v1/fill/w_759,h_7586,al_c,q_90,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC-%EC%83%81%EC%84%B810%EB%A7%A4%EC%9E%85_800.jpg'
+    detailImages: ['/images/hanaglass.png'
+      
     ]
   },
    {
     id: 2,
-    title: '강화유리 상세페이지',
-    description: '핸드폰 강화유리 제품의 특장점을 강조한 상세페이지 및 썸네일 제작.',
-    year: '2021',
+    title: '더블 카드포켓 젤리케이스',
+    description: '핸드폰 케이스 상세페이지 및 썸네일 제작.',
+    year: 2021,
     company: '핸드폰용품 제작회사',
     role: 'Web Design',
-    image: 'https://static.wixstatic.com/media/5dcbb6_be3cd8817d39405387e66012fb561f96~mv2.png/v1/fill/w_350,h_349,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC%EC%8D%B8%EB%84%A4%EC%9D%BC(10%EB%A7%A4)%20copy10_PNG.png',
+    image: '/images/21_03_sum.jpg',
     tags: ['Product Page', 'Mobile Accessory'],
     thumbnailImages: [
-      'https://static.wixstatic.com/media/5dcbb6_8a73378483bf4feea60b31b10d0c3764~mv2.png/v1/fill/w_352,h_349,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC%EC%8D%B8%EB%84%A4%EC%9D%BC(5%EB%A7%A4).png',
-      'https://static.wixstatic.com/media/5dcbb6_be3cd8817d39405387e66012fb561f96~mv2.png/v1/fill/w_350,h_349,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC%EC%8D%B8%EB%84%A4%EC%9D%BC(10%EB%A7%A4)%20copy10_PNG.png'
+      '/images/21_03_sum.jpg'
     ],
     detailImages: [
-      'https://static.wixstatic.com/media/5dcbb6_82d6706abe8b4409add0232416e15429~mv2.jpg/v1/fill/w_759,h_7586,al_c,q_90,enc_avif,quality_auto/%EA%B0%95%ED%99%94%EC%9C%A0%EB%A6%AC-%EC%83%81%EC%84%B810%EB%A7%A4%EC%9E%85_800.jpg'
+      '/images/21_03.jpg'
     ]
   },
   // 프로젝트 2, 3... 같은 형식으로 추가
 ];
 
-export const companyBProjects: Project[] = Array.from({ length: 15 }, (_, i) => ({
-  id: i + 10,
-  title: `B회사 프로젝트 ${i + 1}`,
-  description: '프로모션 페이지, 배너, 썸네일, 인스타그램 콘텐츠 제작.',
-  year: '2022-2025',
-  company: 'B Company',
-  role: 'UI/UX Design',
-  image: `public/images/23홈레코딩프로모션_sum.png`,
-  tags: ['Promotion', 'Social Media'],
-  thumbnailImages: [
-    `https://images.unsplash.com/photo-${1467232004584 + i * 3000}?w=800&h=800&fit=crop`
-  ],
-  detailImages: [
-    `https://images.unsplash.com/photo-${1467232004584 + i * 1000}?w=1200&h=800&fit=crop`
-  ]
-}));
+export const companyBProjects: Project[] = [
+ 
+     {
+    id: 10,
+    title: '2022 블랙세일',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2022,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/22_01_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/22_01_sum.png'
+    ],
+    detailImages: [
+      '/images/22_01.png'
+    ]
+  },
+
+       {
+    id: 11,
+    title: '홈 레코딩',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2023,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/23_01sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/23_01sum.png'
+    ],
+    detailImages: [
+      '/images/23_01.png'
+    ]
+  },
+
+         {
+    id: 12,
+    title: '폼 미쳤다',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2023,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/23_02sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/23_02sum.png'
+    ],
+    detailImages: [
+      '/images/23_02.png'
+    ]
+  },
+
+           {
+    id: 13,
+    title: '그랜드 리뉴얼 오픈',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2023,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/23_04sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/23_04sum.png'
+    ],
+    detailImages: [
+      '/images/23_04.png'
+    ]
+  },
+
+             {
+    id: 14,
+    title: '6월의 선물',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2023,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/23_05sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/23_05sum.png'
+    ],
+    detailImages: [
+      '/images/23_05.png'
+    ]
+  },
+
+             {
+    id: 15,
+    title: '신제품 론칭 프로모션',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2023,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/23_06_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/23_06_sum.png'
+    ],
+    detailImages: [
+      '/images/23_06.png'
+    ]
+
+    
+  },
+
+             {
+    id: 16,
+    title: '2024 아카데미',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/24_01_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+     '/images/24_01_sum.png'
+    ],
+    detailImages: [
+      '/images/23_05.png'
+    ]
+  },
+             {
+    id: 17,
+    title: '감사 프로모션',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/24_02_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/24_02_sum.png'
+    ],
+    detailImages: [
+      '/images/24_02.jpg'
+    ]
+  },
+
+              {
+    id: 18,
+    title: '감사프로모션.ver2',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/24_03_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/24_03_sum.png'
+    ],
+    detailImages: [
+      '/images/24_03.png'
+    ]
+  },
+
+             {
+    id: 19,
+    title: '2024 아카데미',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/24_05_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/24_05_sum.png'
+    ],
+    detailImages: [
+      '/images/24_05.png'
+    ]
+  },
+              {
+    id: 20,
+    title: '2024 아카데미',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/24_05_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/24_05_sum.png'
+    ],
+    detailImages: [
+      '/images/24_05.png'
+    ]
+  },
+              {
+    id: 21,
+    title: '2024 아카데미',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/24_05_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/24_05_sum.png'
+    ],
+    detailImages: [
+      '/images/24_05.png'
+    ]
+  },
+
+]

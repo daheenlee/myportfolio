@@ -26,33 +26,32 @@ export default function About() {
   const skills = [
     { name: 'Photoshop', level: 95 },
     { name: 'Illustrator', level: 90 },
-    { name: 'InDesign', level: 85 },
-    { name: 'HTML/CSS', level: 80 },
+    { name: 'InDesign', level: 80 },
+    { name: 'HTML/CSS', level: 70 },
     { name: 'Premiere Pro', level: 50 },
-    { name: 'Figma', level: 20 },
+    { name: 'Figma', level: 10 },
   ];
 
   const experience = [
     {
-      year: '2023 - Present',
-      title: '시니어 웹 디자이너',
-      company: '회사명',
-      description: '웹사이트 및 모바일 앱 UI/UX 디자인 담당'
-    },
-    {
-      year: '2021 - 2023',
+      year: '2019',
       title: '웹 디자이너',
-      company: '이전 회사명',
-      description: '브랜드 아이덴티티 및 웹 디자인 프로젝트 수행'
+      company: '조군',
+      description: '모델 보정 및 디테일작업, 상세페이지 작업 '
     },
     {
-      year: '2019 - 2021',
-      title: '주니어 디자이너',
-      company: '스타트업',
-      description: '다양한 디자인 업무 경험'
+      year: '2021 - 2022',
+      title: '웹 디자이너',
+      company: '모란카노 코리아',
+      description: '상품 상세페이지 제작,쇼핑몰 배너 제작 및 패키지 디자인 담당'
+    },
+    {
+      year: '2022 - 2026',
+      title: '웹 디자이너',
+      company: 'HDC영창',
+      description: '프로모션 디자인, 카탈로그 디자인 및 전반적 디자인 업무 담당'
     }
   ];
-
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -142,23 +141,28 @@ export default function About() {
                 </span>
               </h2>
               <p className="text-xl text-gray-600 mb-6 font-medium">
-                Web Designer & UI/UX Specialist
+                Web Designer
               </p>
               <p className="text-gray-700 leading-relaxed mb-8 text-lg">
-                안녕하세요! 5년 차 웹 디자이너 이다힌입니다. 
-                사용자 중심의 디자인으로 더 나은 디지털 경험을 만들어가고 있습니다.
+                안녕하세요!  웹 디자이너 이다흰입니다.
               </p>
               
               <div className="flex justify-center md:justify-start gap-4">
-                <button className="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition-all hover:scale-110 border border-gray-100">
-                  <Mail size={22} className="text-gray-700" />
-                </button>
-                <button className="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition-all hover:scale-110 border border-gray-100">
-                  <Github size={22} className="text-gray-700" />
-                </button>
-                <button className="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition-all hover:scale-110 border border-gray-100">
-                  <Linkedin size={22} className="text-gray-700" />
-                </button>
+                <a 
+  href="mailto:daheen0823@gmail.com" 
+  className="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition-all hover:scale-110 border border-gray-100 flex items-center justify-center"
+>
+  <Mail size={22} className="text-gray-700" />
+</a>
+               <a 
+  href="https://github.com/daheenlee" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="p-3 bg-gray-50 hover:bg-gray-100 rounded-full transition-all hover:scale-110 border border-gray-100 flex items-center justify-center"
+>
+  <Github size={22} className="text-gray-700" />
+</a>
+               
               </div>
             </div>
           </div>

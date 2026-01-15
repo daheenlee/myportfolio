@@ -15,7 +15,7 @@ export default function MouseEffect() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [particles, setParticles] = useState<Particle[]>([]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
       
@@ -41,7 +41,7 @@ export default function MouseEffect() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
+*/
   return (
     <>
       {/* 반짝이는 별 파티클 */}
