@@ -223,34 +223,34 @@ export const companyBProjects: Project[] = [
   },
               {
     id: 20,
-    title: '2024 아카데미',
+    title: '장마를 부탁해',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2024,
     company: '피아노 회사',
     role: 'Web Design',
-    image: '/images/24_05_sum.png',
+    image: '/images/24_06_sum.png',
     tags: ['Promotion page'],
     thumbnailImages: [
-      '/images/24_05_sum.png'
+      '/images/24_06_sum.png'
     ],
     detailImages: [
-      '/images/24_05.png'
+      '/images/24_06.jpg'
     ]
   },
               {
     id: 21,
-    title: '2024 아카데미',
+    title: '추석 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2024,
     company: '피아노 회사',
     role: 'Web Design',
-    image: '/images/24_05_sum.png',
+    image: '/images/24_07_sum.png',
     tags: ['Promotion page'],
     thumbnailImages: [
-      '/images/24_05_sum.png'
+      '/images/24_07_sum.png'
     ],
     detailImages: [
-      '/images/24_05.png'
+      '/images/24_07.jpg'
     ]
   },
 
