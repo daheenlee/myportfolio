@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { ExternalLink, X, ArrowLeft } from 'lucide-react';
-// 데이터 경로 확인 필수!
+
 import { companyAProjects, companyBProjects, Project } from '../data/projectsData';
 
 export default function WebDesign() {
