@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { 
+import { X,
   ArrowLeft, 
   Mail, 
   Github, 
@@ -12,11 +12,13 @@ import {
   GraduationCap 
 } from 'lucide-react';
 
+
 export default function About() {
   const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const skillsRef = useRef<HTMLElement>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // 모바일 메뉴 상태 추가
 
   // 1. 하이드레이션 오류 방지: 마운트 확인
   useEffect(() => {
@@ -87,17 +89,18 @@ export default function About() {
         }}
       />
 
-      {/* Navigation (하나로 통일 및 디자인 개선) */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+     {/* Navigation (하나로 통합) */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-2 group cursor-pointer">
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
               <h1 className="text-xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                 DAHEEN
               </h1>
             </Link>
 
+            {/* PC 메뉴 */}
             <div className="hidden md:flex items-center gap-10">
               {[
                 { name: '홈', href: '/' },
@@ -117,10 +120,38 @@ export default function About() {
             <button className="hidden md:block px-6 py-2.5 bg-black text-white text-sm font-bold rounded-full hover:bg-gray-800 transition-all hover:scale-105">
               Contact Me
             </button>
+
+            {/* 모바일 토글 */}
+            <button className="md:hidden text-black" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : (
+                <div className="space-y-1">
+                  <div className="w-6 h-0.5 bg-black"></div>
+                  <div className="w-6 h-0.5 bg-black"></div>
+                  <div className="w-6 h-0.5 bg-black"></div>
+                </div>
+              )}
+            </button>
           </div>
         </div>
+        
+        {/* 모바일 메뉴 드롭다운 */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 pb-6 pt-4 px-4 space-y-2">
+            {[
+              { name: '홈', href: '/' },
+              { name: '자기소개', href: '/profile' },
+              { name: '웹디자인', href: '/webdesign' },
+              { name: '영상편집', href: '/video' }
+            ].map((item) => (
+              <Link key={item.name} href={item.href} onClick={() => setMobileMenuOpen(false)}>
+                <div className="block py-3 px-4 text-gray-600 font-bold hover:bg-gray-50 rounded-lg">
+                  {item.name}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
-
       {/* Hero Section */}
       <section className="pt-48 pb-20 px-4 sm:px-6 lg:px-8 relative">
         <div className="absolute top-20 right-10 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-10"></div>

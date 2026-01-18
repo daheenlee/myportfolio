@@ -277,13 +277,30 @@ export const companyBProjects: Project[] = [
     year: 2025,
     company: '피아노 회사',
     role: 'Web Design',
-    image: '/images/25_02_sum.png',
+     image: '/images/25_03_sum.png',
     tags: ['Promotion page'],
     thumbnailImages: [
-      '/images/25_02_sum.png'
+      '/images/25_03.png'
     ],
     detailImages: [
-      '/images/25_02.jpg'
+      '/images/25_03.png'
+    ]
+  },
+
+              {
+    id: 24,
+    title: '여름 페스티벌',
+    description: '프로모션 상세페이지 및 썸네일 제작.',
+    year: 2025,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/25_04_sum.png',
+    tags: ['Promotion page'],
+    thumbnailImages: [
+      '/images/25_04_sum.png'
+    ],
+    detailImages: [
+      '/images/25_04.jpg'
     ]
   },
 

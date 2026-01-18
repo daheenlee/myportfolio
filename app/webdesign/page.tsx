@@ -1,6 +1,7 @@
 'use client';
-import Link from 'next/link';
+
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { ExternalLink, X, ArrowLeft } from 'lucide-react';
 
 import { companyAProjects, companyBProjects, Project } from '../data/projectsData';
@@ -9,6 +10,7 @@ export default function WebDesign() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeTab, setActiveTab] = useState<'thumbnail' | 'detail'>('thumbnail');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // 마우스 및 스크롤 이벤트
   useEffect(() => {
@@ -70,21 +72,27 @@ export default function WebDesign() {
       />
       
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <Link href="/" className="flex items-center gap-2 group text-black decoration-0 no-underline">
+            <Link href="/" className="flex items-center gap-2 group cursor-pointer">
               <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
               <h1 className="text-xl font-black tracking-tighter bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
                 DAHEEN
               </h1>
             </Link>
 
+            {/* PC 메뉴 */}
             <div className="hidden md:flex items-center gap-10">
-              {['홈', '자기소개', '웹디자인', '영상편집'].map((name, i) => (
-                <Link key={name} href={['/', '/profile', '/webdesign', '/video'][i]}>
+              {[
+                { name: '홈', href: '/' },
+                { name: '자기소개', href: '/profile' },
+                { name: '웹디자인', href: '/webdesign' },
+                { name: '영상편집', href: '/video' }
+              ].map((item) => (
+                <Link key={item.name} href={item.href}>
                   <span className="text-sm font-bold text-gray-500 hover:text-black transition-colors relative group cursor-pointer">
-                    {name}
+                    {item.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
                   </span>
                 </Link>
@@ -94,14 +102,43 @@ export default function WebDesign() {
             <button className="hidden md:block px-6 py-2.5 bg-black text-white text-sm font-bold rounded-full hover:bg-gray-800 transition-all hover:scale-105">
               Contact Me
             </button>
+
+            {/* 모바일 토글 */}
+            <button className="md:hidden text-black" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X size={24} /> : (
+                <div className="space-y-1">
+                  <div className="w-6 h-0.5 bg-black"></div>
+                  <div className="w-6 h-0.5 bg-black"></div>
+                  <div className="w-6 h-0.5 bg-black"></div>
+                </div>
+              )}
+            </button>
           </div>
         </div>
+        
+        {/* 모바일 메뉴 드롭다운 */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 pb-6 pt-4 px-4 space-y-2">
+            {[
+              { name: '홈', href: '/' },
+              { name: '자기소개', href: '/profile' },
+              { name: '웹디자인', href: '/webdesign' },
+              { name: '영상편집', href: '/video' }
+            ].map((item) => (
+              <Link key={item.name} href={item.href} onClick={() => setMobileMenuOpen(false)}>
+                <div className="block py-3 px-4 text-gray-600 font-bold hover:bg-gray-50 rounded-lg">
+                  {item.name}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-52">
         <header className="pb-20 flex flex-col items-start">
-          <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6  uppercase leading-none text-left">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase leading-none text-left">
             WEB <br/><span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">DESIGN</span>
           </h2>
           <p className="text-gray-500 text-xl font-medium max-w-2xl leading-relaxed">
@@ -111,36 +148,31 @@ export default function WebDesign() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        {/* 섹션 1: 핸드폰 용품 */}
-      <section className="mb-40">
-  {/* 큰 섹션 제목 */}
-  <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
-    <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">01</span>
-    <h3 className="text-2xl font-bold tracking-tight">
-      핸드폰용품 제작회사 <span className="text-black-400 font-light ml-2">| 제품 상세페이지</span>
-    </h3>
-  </div>
-  <div className="mb-32">
-    <h4 className="text-xl font-black text-blue-500 mb-8 tracking-tighter">2021 PROJECTS</h4>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
-      {/* 2021년 프로젝트만 출력 */}
-      {companyAProjects.filter(p => p.year === 2021).map((p) => (
-        <ProjectCard key={p.id} project={p} />
-      ))}
-    </div>
-  </div>
-</section>
-
-        {/* 섹션 2: B Company - 연도별 섹션 */}
         <section className="mb-40">
           <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
-<span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">02</span>
+            <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">01</span>
             <h3 className="text-2xl font-bold tracking-tight">
-              B Company <span className="text-black-400 font-light ml-2">| 프로모션 & 디자인</span>
+              핸드폰용품 제작회사 <span className="text-gray-400 font-light ml-2">| 제품 상세페이지</span>
+            </h3>
+          </div>
+          <div className="mb-32">
+            <h4 className="text-xl font-black text-blue-500 mb-8 tracking-tighter">2021 PROJECTS</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+              {companyAProjects.filter(p => p.year === 2021).map((p) => (
+                <ProjectCard key={p.id} project={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-40">
+          <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
+            <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">02</span>
+            <h3 className="text-2xl font-bold tracking-tight">
+              B Company <span className="text-gray-400 font-light ml-2">| 프로모션 & 디자인</span>
             </h3>
           </div>
 
-          {/* 연도별 렌더링 */}
           {[2022, 2023, 2024, 2025].map((year) => {
             const projects = companyBProjects.filter(p => p.year === year);
             if (projects.length === 0) return null;
@@ -158,7 +190,6 @@ export default function WebDesign() {
         </section>
       </div>
 
-      {/* 모달 창 */}
       {selectedProject && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] flex items-center justify-center p-4 md:p-8" onClick={() => setSelectedProject(null)}>
           <div className="max-w-6xl w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl h-full max-h-[92vh] flex flex-col relative" onClick={e => e.stopPropagation()}>
