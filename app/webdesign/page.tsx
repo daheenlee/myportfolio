@@ -134,7 +134,7 @@ export default function WebDesign() {
         {/* 섹션 2: B Company - 연도별 섹션 */}
         <section className="mb-40">
           <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
-<span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent italic font-black">02</span>
+<span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">02</span>
             <h3 className="text-2xl font-bold tracking-tight">
               B Company <span className="text-black-400 font-light ml-2">| 프로모션 & 디자인</span>
             </h3>

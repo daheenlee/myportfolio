@@ -10,8 +10,7 @@ function VideoSlider() {
     {
       id: 1,
       title: '아티스트 인터뷰 영상(1)',
-      description: `아티스트의 숨겨진 매력을 이끌어내는 인터뷰 시리즈 기획 및 제작.
-2인 제작 시스템으로 운영하며, 기획 단계의 질문지 구성부터 촬영 현장 총괄,
+      description: `아티스트의 인터뷰 시리즈 기획 및 제작.2인 제작 시스템으로 운영하며, 기획 단계의 질문지 구성부터 촬영 현장 총괄,
 최종 편집까지 제작 전 프로세스를 경험하며 효율적인 콘텐츠 생산 구조를 확립했습니다.`,
       thumbnail: '/images/videosum.png',
       tags: [ 'Premiere Pro', 'After Effects'],
@@ -19,28 +18,21 @@ function VideoSlider() {
     },
     {
       id: 2,
-      title: '제품 소개 영상',
-      description: '신제품의 특징과 장점을 효과적으로 전달하는 소개 영상입니다. 클린하고 모던한 편집 스타일로 제작했습니다.',
-      thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&h=800&fit=crop',
-      tags: ['Product Video', 'Color Grading', 'Sound Design'],
+      title: '아티스트 인터뷰 영상(2)',
+      description: '아티스트의 인터뷰 시리즈 기획 및 제작. 2인 제작 시스템으로 운영하며, 기획 단계의 질문지 구성부터 촬영 현장 총괄, 최종 편집까지 제작 전 프로세스를 경험하며 효율적인 콘텐츠 생산 구조를 확립했습니다.', // 따옴표 확인!
+      thumbnail: '/images/maxresdefault.jpg',
+      tags: ['Premiere Pro', 'After Effects'],
       year: '2024'
-    },
+  },
     {
       id: 3,
-      title: '기업 홍보 영상',
+      title: '아티스트 연주 영상',
       description: '회사의 비전과 가치를 담은 홍보 영상입니다. 감성적인 스토리텔링과 고퀄리티 영상미를 추구했습니다.',
-      thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=1200&h=800&fit=crop',
-      tags: ['Corporate', 'Storytelling', 'Cinematography'],
+      thumbnail: '/images/music_02.png',
+      tags: ['Premiere Pro', 'After Effects'],
       year: '2023'
     },
-    {
-      id: 4,
-      title: 'SNS 숏폼 콘텐츠',
-      description: '소셜 미디어를 위한 15초 숏폼 영상 시리즈입니다. 빠른 템포와 임팩트 있는 편집이 특징입니다.',
-      thumbnail: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=800&fit=crop',
-      tags: ['Short Form', 'Social Media', 'Viral Content'],
-      year: '2023'
-    }
+
   ];
 
   const nextSlide = () => {
@@ -187,7 +179,7 @@ export default function Portfolio() {
             </a>
 
           {/* Navigation (하나로 통일 및 디자인 개선) */}
-               <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+               <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border--100 transition-all duration-300">
                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                    <div className="flex items-center justify-between h-20">
                      <Link href="/" className="flex items-center gap-2 group">
@@ -308,7 +300,7 @@ export default function Portfolio() {
           />
         </div>
 
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 mt-6">
           <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold mb-8 tracking-tight">
             WEB DESIGNER
             <br />
@@ -332,18 +324,13 @@ export default function Portfolio() {
                 자기소개
               </button>
             </a>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="px-8 py-4 border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-all hover:scale-110 font-semibold"
-            >
-              연락하기
-            </button>
+            
           </div>
         </div>
 
         <button 
           onClick={() => scrollToSection('web')}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce text-black"
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 animate-bounce text-black"
         >
           <ChevronDown size={40} />
         </button>
@@ -358,8 +345,8 @@ export default function Portfolio() {
 
         <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-5xl md:text-7xl font-bold mb-20">
-            <span className="text-green-700">01.</span> Web Design
-          </h2>
+            <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent italic font-black">01.</span> Web Design
+             </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="relative aspect-[4/3] bg-gray-100 rounded-2xl overflow-hidden border border-gray-200 shadow-lg">
@@ -401,7 +388,7 @@ export default function Portfolio() {
       </section>
 
       {/* Video Section */}
-      <section id="video" className="min-h-screen py-32 px-4 md:px-16 relative flex items-center">
+      <section id="video" className="min-h-screen py-3  px-4 md:px-16 relative flex items-center">
         <div 
           className="absolute top-1/2 right-0 w-96 h-96 bg-green-400 rounded-full blur-3xl opacity-20"
           style={{ transform: `translateY(${scrollY * 0.08}px)` }}
@@ -440,15 +427,13 @@ export default function Portfolio() {
             <a href="mailto:your-email@example.com" className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
               <Mail size={32} className="text-black" />
             </a>
-            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
+            <a href="https://github.com/daheenlee" target="_blank" rel="noopener noreferrer" className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
               <Github size={32} className="text-black" />
             </a>
-            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="p-4 bg-black/10 hover:bg-black/20 rounded-full transition-all hover:scale-110">
-              <Linkedin size={32} className="text-black" />
-            </a>
+        
           </div>
 
-          <a href="mailto:your-email@example.com" className="px-12 py-5 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-110 font-bold text-lg flex items-center gap-2 mx-auto w-fit">
+          <a href="mailto:daheen0823@gmail.com" className="px-12 py-5 bg-black text-white rounded-full hover:bg-gray-800 transition-all hover:scale-110 font-bold text-lg flex items-center gap-2 mx-auto w-fit">
             이메일 보내기
             <ArrowRight size={24} />
           </a>
