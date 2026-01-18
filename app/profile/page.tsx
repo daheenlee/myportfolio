@@ -269,7 +269,7 @@ export default function About() {
 
       {/* Footer */}
       <footer className="py-12 text-center text-gray-500 bg-black border-t border-gray-900">
-        <p className="text-sm tracking-widest font-medium">© 2026 DAHEEN LEE. DESIGNED WITH PASSION.</p>
+        <p className="text-sm tracking-widest font-medium">© 2026 Daheen Lee. All rights reserved.</p>
       </footer>
     </div>
   );
