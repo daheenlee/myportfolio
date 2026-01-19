@@ -186,9 +186,12 @@ export default function Portfolio() {
             WEB DESIGNER <br />
             <span className="bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 bg-clip-text text-transparent">Daheen Lee</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            본 포트폴리오는 고해상도 데스크탑 환경에 최적화되어 있습니다.<br/>더 깊이 있는 시각적 경험을 위해 PC 방문을 권장합니다.
-          </p>
+            <div className="bg-blue-50 py-2 px-4 text-center md:hidden mb-12">
+            <p className="text-xs font-bold text-blue-600 tracking-tight">
+              📢 현재 모바일 최적화 작업 중입니다. <br />
+              더 디테일한 디자인 확인을 위해 <span className="underline uppercase italic">PC 환경</span>을 권장드려요!
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => scrollToSection('web')} className="px-8 py-4 bg-black text-white rounded-full hover:scale-110 transition-all font-semibold">프로젝트 보기</button>
             <Link href="/profile"><button className="px-8 py-4 border-2 border-black rounded-full hover:bg-black hover:text-white transition-all font-semibold">자기소개</button></Link>
