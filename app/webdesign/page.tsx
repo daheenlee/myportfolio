@@ -152,7 +152,7 @@ export default function WebDesign() {
           <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
             <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">01</span>
             <h3 className="text-2xl font-bold tracking-tight">
-              핸드폰용품 제작회사 <span className="text-gray-400 font-light ml-2">| 제품 상세페이지</span>
+              핸드폰용품 제작회사 <span className="text-gray-400 font-light ml-2">| 제품 상세페이지 / 기여도: 90%</span>
             </h3>
           </div>
           <div className="mb-32">
@@ -169,7 +169,7 @@ export default function WebDesign() {
           <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
             <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">02</span>
             <h3 className="text-2xl font-bold tracking-tight">
-              B Company <span className="text-gray-400 font-light ml-2">| 프로모션 & 디자인</span>
+              B Company <span className="text-gray-400 font-light ml-2">| 프로모션 & 디자인 기여도: 80%</span>
             </h3>
           </div>
 
