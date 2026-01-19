@@ -17,7 +17,7 @@ export const companyAProjects: Project[] = [
   {
     id: 1,
     title: '강화유리 상세페이지',
-    description: '핸드폰 강화유리 상세페이지 및 썸네일 제작.',
+    description: '핸드폰 강화유리 상세페이지 및 썸네일 제작 / 렌더링 및 소스 제공 20% 나머지 본인 제작',
     year: 2021,
     company: '핸드폰용품 제작회사',
     role: 'Web Design',
@@ -33,7 +33,7 @@ export const companyAProjects: Project[] = [
    {
     id: 2,
     title: '더블 카드포켓 젤리케이스 상세페이지',
-    description: '핸드폰 케이스 상세페이지 및 썸네일 제작.',
+    description: '핸드폰 케이스 상세페이지 및 썸네일 제작 / 렌더링 및 소스 제공 20% 나머지 본인 제작',
     year: 2021,
     company: '핸드폰용품 제작회사',
     role: 'Web Design',
