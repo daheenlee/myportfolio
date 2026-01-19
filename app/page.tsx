@@ -182,12 +182,12 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
         <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold mb-8 tracking-tight">
+         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold mb-8 tracking-tight animate-fade-in-up">
             WEB DESIGNER <br />
             <span className="bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 bg-clip-text text-transparent">Daheen Lee</span>
           </h1>
             <div className="bg-blue-50 py-2 px-4 text-center md:hidden mb-12">
-            <p className="text-xs font-bold text-blue-600 tracking-tight">
+            <p className="text-xs font-bold text-blue-600 tracking-tight animate-fade-in-up delay-200 opacity-0">
               📢 현재 모바일 최적화 작업 중입니다. <br />
               더 디테일한 디자인 확인을 위해 <span className="underline uppercase italic">PC 환경</span>을 권장드려요!
             </p>
