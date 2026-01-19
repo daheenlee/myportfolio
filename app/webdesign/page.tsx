@@ -205,7 +205,7 @@ export default function WebDesign() {
                       {selectedProject.company}
                     </span>
                   </div>
-                  <h3 className="text-4xl font-black tracking-tight italic uppercase">{selectedProject.title}</h3>
+                  <h3 className="text-4xl font-black tracking-tight uppercase">{selectedProject.title}</h3>
                 </div>
                 <div className="flex gap-4 mb-1">
                   {(['thumbnail', 'detail'] as const).map((tab) => (
