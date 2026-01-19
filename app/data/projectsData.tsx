@@ -7,10 +7,10 @@ export interface Project {
   year: number;
   company: string;
   role: string;
-  image: string; // 카드에 보이는 대표 이미지
+  image: string; 
   tags: string[];
-  thumbnailImages: string[]; // '썸네일' 탭에서 보여줄 이미지들
-  detailImages: string[];    // '상세페이지' 탭에서 보여줄 이미지들
+  thumbnailImages: string[]; 
+  detailImages: string[];   
 }
 
 export const companyAProjects: Project[] = [
@@ -32,7 +32,7 @@ export const companyAProjects: Project[] = [
   },
    {
     id: 2,
-    title: '더블 카드포켓 젤리케이스',
+    title: '더블 카드포켓 젤리케이스 상세페이지',
     description: '핸드폰 케이스 상세페이지 및 썸네일 제작.',
     year: 2021,
     company: '핸드폰용품 제작회사',
@@ -46,14 +46,14 @@ export const companyAProjects: Project[] = [
       '/images/21_03.jpg'
     ]
   },
-  // 프로젝트 2, 3... 같은 형식으로 추가
+
 ];
 
 export const companyBProjects: Project[] = [
  
      {
     id: 10,
-    title: '2022 블랙세일',
+    title: '2022 블랙세일 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2022,
     company: '피아노 회사',
@@ -70,7 +70,7 @@ export const companyBProjects: Project[] = [
 
        {
     id: 11,
-    title: '홈 레코딩',
+    title: '홈 레코딩 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2023,
     company: '피아노 회사',
@@ -87,7 +87,7 @@ export const companyBProjects: Project[] = [
 
          {
     id: 12,
-    title: '폼 미쳤다',
+    title: '폼 미쳤다 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2023,
     company: '피아노 회사',
@@ -104,7 +104,7 @@ export const companyBProjects: Project[] = [
 
            {
     id: 13,
-    title: '그랜드 리뉴얼 오픈',
+    title: '그랜드 리뉴얼 오픈 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2023,
     company: '피아노 회사',
@@ -121,7 +121,7 @@ export const companyBProjects: Project[] = [
 
              {
     id: 14,
-    title: '6월의 선물',
+    title: '6월의 선물 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2023,
     company: '피아노 회사',
@@ -138,7 +138,7 @@ export const companyBProjects: Project[] = [
 
              {
     id: 15,
-    title: '신제품 론칭 프로모션',
+    title: '신제품 론칭 프로모션 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2023,
     company: '피아노 회사',
@@ -157,7 +157,7 @@ export const companyBProjects: Project[] = [
 
              {
     id: 16,
-    title: '2024 아카데미',
+    title: '2024 아카데미 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
     year: 2024,
     company: '피아노 회사',
@@ -207,9 +207,9 @@ export const companyBProjects: Project[] = [
 
              {
     id: 19,
-    title: '2024 아카데미',
+    title: '가정의달 신제품 체험단 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
-    year: 2024,
+    year: 2024.04,
     company: '피아노 회사',
     role: 'Web Design',
     image: '/images/24_05_sum.png',
@@ -225,7 +225,7 @@ export const companyBProjects: Project[] = [
     id: 20,
     title: '장마를 부탁해',
     description: '프로모션 상세페이지 및 썸네일 제작.',
-    year: 2024,
+    year: 2024.07,
     company: '피아노 회사',
     role: 'Web Design',
     image: '/images/24_06_sum.png',
@@ -241,7 +241,7 @@ export const companyBProjects: Project[] = [
     id: 21,
     title: '추석 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
-    year: 2024,
+    year: 2024.09,
     company: '피아노 회사',
     role: 'Web Design',
     image: '/images/24_07_sum.png',
@@ -272,9 +272,9 @@ export const companyBProjects: Project[] = [
 
                {
     id: 23,
-    title: '여름 페스티벌',
+    title: '신제품 론칭 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
-    year: 2025,
+    year: 2025.07,
     company: '피아노 회사',
     role: 'Web Design',
      image: '/images/25_03_sum.png',
@@ -289,9 +289,9 @@ export const companyBProjects: Project[] = [
 
               {
     id: 24,
-    title: '여름 페스티벌',
+    title: '크리스마스 프로모션',
     description: '프로모션 상세페이지 및 썸네일 제작.',
-    year: 2025,
+    year: 2025.07,
     company: '피아노 회사',
     role: 'Web Design',
     image: '/images/25_04_sum.png',
