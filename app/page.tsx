@@ -203,7 +203,7 @@ export default function Portfolio() {
       {/* Web Design Section */}
       <section id="web" className="min-h-screen py-32 px-4 md:px-16 relative bg-gray-50/50">
         <div className="max-w-7xl mx-auto w-full">
-          <h2 className="text-5xl md:text-7xl font-black mb-20 italic">
+          <h2 className="text-3xl md:text-7xl font-black mb-20 ">
             <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">01.</span> Web Design
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -228,7 +228,7 @@ export default function Portfolio() {
       {/* Video Section */}
       <section id="video" className="min-h-screen py-32 px-4 md:px-16 relative">
         <div className="max-w-7xl mx-auto w-full">
-       <h2 className="text-5xl md:text-7xl font-black mb-20 italic">
+       <h2 className="text-3xl md:text-7xl font-black mb-20 ">
             <span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">02.</span> Video Editing
           </h2>
           <VideoSlider />
