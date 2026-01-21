@@ -247,8 +247,7 @@ export default function Portfolio() {
       href="mailto:daheen0823@gmail.com" 
       className="p-4 bg-white rounded-full hover:scale-125 transition-all text-black"
     >
-      <Mail size={32} />
-    </a>
+      <Mail size={32} />  </a>
 
     <a 
       href="https://github.com/daheenlee" 
