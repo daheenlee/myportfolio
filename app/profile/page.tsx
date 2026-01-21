@@ -175,7 +175,7 @@ export default function About() {
                 Web Designer
               </p>
               <p className="text-gray-700 leading-relaxed mb-8 text-lg">
-                안녕하세요!  웹 디자이너 이다흰입니다.
+                안녕하세요! 실무 중심의 성장을 지향하며, 유연한 처우 협의가 가능한 준비된 경력직입니다.
               </p>
               
               <div className="flex justify-center md:justify-start gap-4">
