@@ -180,26 +180,29 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="relative z-10 text-center px-4">
-         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold mb-8 tracking-tight animate-fade-in-up">
-            WEB DESIGNER <br />
-          <span className="bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 bg-clip-text text-transparent animate-spin-in inline-block">
-  Daheen Lee
-</span>>
-            <div className="bg-blue-50 py-2 px-4 text-center md:hidden mb-12">
-            <p className="text-xs font-bold text-blue-600 tracking-tight animate-fade-in-up delay-200 opacity-0">
-              📢 현재 모바일 최적화 작업 중입니다. <br />
-              더 디테일한 디자인 확인을 위해 <span className="underline uppercase italic">PC 환경</span>을 권장드려요!
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => scrollToSection('web')} className="px-8 py-4 bg-black text-white rounded-full hover:scale-110 transition-all font-semibold">프로젝트 보기</button>
-            <Link href="/profile"><button className="px-8 py-4 border-2 border-black rounded-full hover:bg-black hover:text-white transition-all font-semibold">자기소개</button></Link>
-          </div>
-        </div>
-        <button onClick={() => scrollToSection('web')} className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-black"><ChevronDown size={40} /></button>
-      </section>
+     <section id="intro" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+  <div className="relative z-10 text-center px-4">
+    <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold mb-8 tracking-tight animate-fade-in-up">
+      WEB DESIGNER <br />
+      <span className="bg-gradient-to-r from-blue-500 via-green-500 to-blue-500 bg-clip-text text-transparent animate-spin-in inline-block">
+        Daheen Lee
+      </span>
+    </h1>  
+
+    <div className="bg-blue-50 py-2 px-4 text-center md:hidden mb-12">
+      <p className="text-xs font-bold text-blue-600 tracking-tight animate-fade-in-up delay-200 opacity-0">
+        📢 현재 모바일 최적화 작업 중입니다. <br />
+        더 디테일한 디자인 확인을 위해 <span className="underline uppercase italic">PC 환경</span>을 권장드려요!
+      </p>
+    </div>
+
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <button onClick={() => scrollToSection('web')} className="px-8 py-4 bg-black text-white rounded-full hover:scale-110 transition-all font-semibold">프로젝트 보기</button>
+      <Link href="/profile"><button className="px-8 py-4 border-2 border-black rounded-full hover:bg-black hover:text-white transition-all font-semibold">자기소개</button></Link>
+    </div>
+  </div>
+  <button onClick={() => scrollToSection('web')} className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-black"><ChevronDown size={40} /></button>
+</section>
 
       {/* Web Design Section */}
       <section id="web" className="min-h-screen py-32 px-4 md:px-16 relative bg-gray-50/50">
