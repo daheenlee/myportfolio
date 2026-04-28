@@ -147,7 +147,9 @@ export default function WebDesign() {
         </header>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+    <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        
+        {/* 01 섹션 */}
         <section className="mb-40">
           <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
             <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">01</span>
@@ -165,30 +167,14 @@ export default function WebDesign() {
           </div>
         </section>
 
+        {/* 02 섹션 */}
         <section className="mb-40">
           <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
             <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">02</span>
             <h3 className="text-2xl font-bold tracking-tight">
-             악기 제작회사 <span className="text-gray-400 font-light ml-2">| 프로모션 & 디자인 기여도: 80%</span>
+              악기 제작회사 <span className="text-gray-400 font-light ml-2">| 프로모션 & 디자인 기여도: 80%</span>
             </h3>
-<section className="mb-40">
-  <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
-    <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">03</span>
-    <h3 className="text-2xl font-bold tracking-tight">
-      개인작업 <span className="text-gray-400 font-light ml-2">| 식품 상세페이지 / 기여도: 100%</span>
-    </h3>
-  </div>
-  <div className="mb-32">
-    <h4 className="text-xl font-black text-blue-500 mb-8 tracking-tighter">2026 PROJECTS</h4>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
-      {companyCProjects.map((p) => (
-        <ProjectCard key={p.id} project={p} />
-      ))}
-    </div>
-  </div>
-</section>
           </div>
-
           {[2022, 2023, 2024, 2025].map((year) => {
             const projects = companyBProjects.filter(p => p.year === year);
             if (projects.length === 0) return null;
@@ -204,8 +190,25 @@ export default function WebDesign() {
             );
           })}
         </section>
-      </div>
 
+        {/* ✅ 03 섹션 - 02 완전히 닫힌 후에! */}
+        <section className="mb-40">
+          <div className="flex items-baseline gap-4 mb-20 border-b border-gray-100 pb-6">
+            <span className="text-4xl bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent font-black">03</span>
+            <h3 className="text-2xl font-bold tracking-tight">
+              개인작업 <span className="text-gray-400 font-light ml-2">| 식품 상세페이지 / 기여도: 100%</span>
+            </h3>
+          </div>
+          <div className="mb-32">
+            <h4 className="text-xl font-black text-blue-500 mb-8 tracking-tighter">2026 PROJECTS</h4>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
+              {companyCProjects.map((p) => (
+                <ProjectCard key={p.id} project={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+ </div>
       {selectedProject && (
         <div className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100] flex items-center justify-center p-4 md:p-8" onClick={() => setSelectedProject(null)}>
           <div className="max-w-6xl w-full bg-white rounded-[2rem] overflow-hidden shadow-2xl h-full max-h-[92vh] flex flex-col relative" onClick={e => e.stopPropagation()}>
