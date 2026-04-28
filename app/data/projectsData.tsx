@@ -319,7 +319,7 @@ export const companyCProjects: Project[] = [
     thumbnailImages: [
       '/images/solo1_sum.png'
     ],
-    detailImages: ['/images/solo1_sum2.png'
+    detailImages: ['/images/solo1_sum3.png'
       
     ]
   },
