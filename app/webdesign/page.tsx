@@ -142,7 +142,7 @@ export default function WebDesign() {
             WEB <br/><span className="bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text text-transparent">DESIGN</span>
           </h2>
           <p className="text-gray-500 text-xl font-medium max-w-2xl leading-relaxed">
-            기업 재직 중 수행한 상품 상세페이지, 프로모션 디자인 프로젝트 결과물입니다.
+            상세페이지, 프로모션 디자인 프로젝트 결과물입니다.
           </p>
         </header>
       </div>
