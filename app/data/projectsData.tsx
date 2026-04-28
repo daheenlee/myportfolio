@@ -314,12 +314,12 @@ export const companyCProjects: Project[] = [
     year: 2026,
     company: '개인작업용 포트폴리오',
     role: 'Web Design',
-    image: '/images/solo1_sum.png',
+    image: '/images/solo1_sum0.png',
     tags: ['Product Page', 'Food'],
     thumbnailImages: [
-      '/images/solo1_sum.png'
+      '/images/solo1_sum0.png'
     ],
-    detailImages: ['/images/solo1_sum3.png'
+    detailImages: ['/images/solo1_sum4.png'
       
     ]
   },
