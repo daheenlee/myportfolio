@@ -305,3 +305,23 @@ export const companyBProjects: Project[] = [
   },
 
 ]
+
+export const companyCProjects: Project[] = [
+  {
+    id: 30,
+    title: 'Iching 음료 상세페이지',
+    description: '음료 상세페이지 및 썸네일 제작',
+    year: 2026,
+    company: '개인작업용 포트폴리오',
+    role: 'Web Design',
+    image: '/images/solo1_sum1.png',
+    tags: ['Product Page', 'Food'],
+    thumbnailImages: [
+      '/images/solo1_sum1.png'
+    ],
+    detailImages: ['/images/solo1_sum2.png'
+      
+    ]
+  },
+
+];
