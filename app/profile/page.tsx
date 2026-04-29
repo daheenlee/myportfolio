@@ -261,9 +261,11 @@ export default function About() {
           <p className="text-xl text-gray-400 mb-12">
             새로운 프로젝트나 협업 기회에 대해 언제든 환영합니다.
           </p>
-          <button className="px-12 py-5 bg-white text-black rounded-full hover:bg-gray-200 transition-all hover:scale-110 font-black text-lg shadow-2xl">
+          <a href="mailto:daheen0823@gmail.com">
+            <button className="px-12 py-5 bg-white text-black rounded-full hover:bg-gray-200 transition-all hover:scale-110 font-black text-lg shadow-2xl">
             GET IN TOUCH
           </button>
+</a>
         </div>
       </section>
 
