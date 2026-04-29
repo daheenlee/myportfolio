@@ -304,6 +304,23 @@ export const companyBProjects: Project[] = [
     ]
   },
 
+                {
+    id: 25,
+    title: '피아노 상세페이지',
+    description: '제품 상세페이지 및 썸네일 제작.',
+    year: 2024,
+    company: '피아노 회사',
+    role: 'Web Design',
+    image: '/images/2024_cupm1sum.jpg',
+    tags: ['Product page'],
+    thumbnailImages: [
+      '/images/2024_cupm1sum.jpg'
+    ],
+    detailImages: [
+      '/images/2024_cupm1d.jpg'
+    ]
+  },
+
 ]
 
 export const companyCProjects: Project[] = [
