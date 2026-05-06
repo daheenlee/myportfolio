@@ -64,7 +64,7 @@ export const companyBProjects: Project[] = [
       '/images/22_01_sum.png'
     ],
     detailImages: [
-      '/images/22_01.png'
+      '/images/22_01.jpg'
     ]
   },
 
